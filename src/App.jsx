@@ -1,5 +1,7 @@
 import { Route,Routes } from 'react-router-dom'
 import { Home } from './components/Home'
+import { Learn } from './components/Learn'
+import { Notes } from './components/Notes'
 import './App.css'
 
 function App() {
@@ -9,6 +11,8 @@ function App() {
     <>
     <Routes>
       <Route path="/" element={<Home/>}/>
+      <Route path="/learn" element={<Learn/>}/>
+      <Route path="/notes" element={<Notes/>}/>
     </Routes>
     </>
   )

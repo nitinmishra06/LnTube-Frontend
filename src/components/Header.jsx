@@ -1,21 +1,24 @@
 import './Style/Header.css'
+import { Link } from 'react-router-dom';
 export function Header(){
     return(
         <>
-        <header class="header">
+      <header className="header">
 
-    <div class="logo">
-        <span class="logo-icon">
-            <i class="fa-solid fa-graduation-cap"></i>
+      <Link to="/" className="logo">
+
+        <span className="logo-icon">
+          <i className="fa-solid fa-graduation-cap"></i>
         </span>
 
         <h1>LearnTube</h1>
-    </div>
+
+      </Link>
 
     <nav class="nav-links">
-        <a href="#">Learn</a>
-        <a href="#">Notes</a>
-        <a href='#'>Profile</a>
+         <Link to="/learn">Learn</Link>
+        <Link to="/notes">Notes</Link>
+        <Link to="/profile">Profile</Link>
     </nav>
 
     <div class="menu-btn">
