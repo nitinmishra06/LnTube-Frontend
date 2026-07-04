@@ -1,8 +1,14 @@
 import { Header } from "./Header";
 import './Style/Home.css'
 import homeImage from "../assets/home.svg";
+import { useState } from "react";
+
 
 export function Home(){
+const[streak,setStreak]=useState(23);
+    function resetStreak(){
+        setStreak(0);
+    }
     return(
         <>
         <Header/>
@@ -79,13 +85,13 @@ export function Home(){
 
             <div className="streak-circle">
 
-                <span>23</span>
+                <span>{streak}</span>
 
             </div>
 
             <p>days</p>
 
-            <button className="reset-btn">
+            <button onClick={resetStreak} className="reset-btn">
                 Reset Streak
             </button>
 

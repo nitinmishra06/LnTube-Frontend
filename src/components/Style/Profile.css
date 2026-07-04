@@ -1,0 +1,190 @@
+.profile-page{
+
+    width:90%;
+    max-width:1200px;
+
+    margin:50px auto;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:40px;
+}
+
+/* ========================= */
+
+.profile-card{
+
+    background:white;
+
+    border-radius:20px;
+
+    box-shadow:var(--shadow);
+
+    padding:40px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+}
+
+.profile-img{
+
+    width:170px;
+    height:170px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:6px solid var(--primary-color);
+
+    margin-bottom:20px;
+}
+
+.profile-card h2{
+
+    color:var(--heading-color);
+
+    margin-bottom:10px;
+}
+
+.profile-card p{
+
+    color:#666;
+}
+
+/* ========================= */
+
+.stats-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:25px;
+}
+
+.stat-card{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:35px;
+
+    text-align:center;
+
+    box-shadow:var(--shadow);
+
+    transition:.3s;
+}
+
+.stat-card:hover{
+
+    transform:translateY(-6px);
+}
+
+.stat-card h1{
+
+    color:var(--primary-color);
+
+    font-size:2.7rem;
+
+    margin-bottom:10px;
+}
+
+.stat-card span{
+
+    color:#666;
+}
+
+/* ========================= */
+
+.quote-card{
+
+    background:white;
+
+    border-radius:20px;
+
+    box-shadow:var(--shadow);
+
+    padding:40px;
+
+    text-align:center;
+}
+
+.quote-card h2{
+
+    margin-bottom:25px;
+}
+
+.quote{
+
+    font-size:1.4rem;
+
+    line-height:1.8;
+
+    font-style:italic;
+
+    color:var(--heading-color);
+}
+
+.author{
+
+    display:block;
+
+    margin-top:20px;
+
+    color:var(--primary-color);
+
+    font-weight:600;
+}
+
+/* ========================= */
+
+@media(max-width:900px){
+
+.stats-grid{
+
+    grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+@media(max-width:600px){
+
+.profile-page{
+
+    width:95%;
+}
+
+.profile-card{
+
+    padding:30px;
+}
+
+.profile-img{
+
+    width:130px;
+    height:130px;
+}
+
+.stats-grid{
+
+    grid-template-columns:1fr;
+}
+
+.stat-card{
+
+    padding:25px;
+}
+
+.quote{
+
+    font-size:1.1rem;
+}
+
+}
