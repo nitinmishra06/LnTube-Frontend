@@ -15,6 +15,7 @@ export function Header(){
     <nav class="nav-links">
         <a href="#">Learn</a>
         <a href="#">Notes</a>
+        <a href='#'>Profile</a>
     </nav>
 
     <div class="menu-btn">

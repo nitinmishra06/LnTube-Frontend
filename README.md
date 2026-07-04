@@ -37,9 +37,6 @@ git clone https://github.com/nitinmishra06/Learning-React-nth-time.git
 
 Navigate to the project directory:
 
-```bash
-cd Learning-React-nth-time
-```
 
 Install dependencies:
 
@@ -71,6 +68,3 @@ Open the URL shown in your terminal (typically `http://localhost:5173`) to view 
 
 Contributions, suggestions, and feedback are welcome. Feel free to open an issue or submit a pull request.
 
-## 📄 License
-
-This project is licensed under the MIT License.
