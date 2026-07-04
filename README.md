@@ -1,16 +1,76 @@
-# React + Vite
+# LearnTube 📚🎥
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+LearnTube is an AI-powered learning platform that transforms YouTube playlists into structured, trackable courses. Instead of passively watching videos, learners can monitor their progress, test their understanding with AI-generated quizzes, and earn certificates after successfully completing a playlist.
 
-Currently, two official plugins are available:
+> 🚧 **Project Status:** This project is currently **under active development**. New features are being added regularly.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ✨ Planned Features
 
-## React Compiler
+* 📺 Import any public YouTube playlist using its URL.
+* 📈 Track learning progress across videos.
+* 🤖 AI-generated quizzes after selected videos to reinforce learning.
+* 📝 Final assessment at the end of a course.
+* 🏆 Downloadable certificate upon successful completion.
+* 📊 Dashboard to monitor completed and ongoing courses.
+* 🔐 User authentication and personalized learning history.
+* 💡 AI-powered explanations and summaries for difficult concepts.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Tech Stack
 
-## Expanding the ESLint configuration
+* **Frontend:** React.js, Vite
+* **Styling:** CSS / Tailwind CSS *(planned)*
+* **Backend:** Node.js, Express.js *(planned)*
+* **Database:** MongoDB *(planned)*
+* **AI:** LLM APIs for quiz generation and content understanding *(planned)*
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🎯 Vision
+
+Many students rely on YouTube playlists to learn new skills, but they often lack structured progress tracking, assessments, and recognized proof of learning. LearnTube aims to bridge this gap by turning educational YouTube playlists into an interactive learning experience.
+
+## 🚀 Getting Started
+
+Clone the repository:
+
+```bash
+git clone https://github.com/nitinmishra06/Learning-React-nth-time.git
+```
+
+Navigate to the project directory:
+
+```bash
+cd Learning-React-nth-time
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+Open the URL shown in your terminal (typically `http://localhost:5173`) to view the application.
+
+## 📌 Roadmap
+
+* [ ] YouTube playlist integration
+* [ ] Progress tracking
+* [ ] AI quiz generation
+* [ ] User authentication
+* [ ] Dashboard
+* [ ] Final assessment
+* [ ] Certificate generation
+* [ ] Responsive UI
+* [ ] Deployment
+
+## 🤝 Contributions
+
+Contributions, suggestions, and feedback are welcome. Feel free to open an issue or submit a pull request.
+
+## 📄 License
+
+This project is licensed under the MIT License.
