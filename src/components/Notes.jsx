@@ -1,78 +1,86 @@
+import { useEffect, useState } from "react";
 import { Header } from "./Header";
 import { Link } from "react-router-dom";
+import api from "../api/axios";
 import "./Style/Notes.css";
 
-const notes = [
+export function Notes() {
+  const [notes, setNotes] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-    {
-        id:1,
-        title:"React Crash Course",
-        preview:"Learnt about Hooks, Components and Props.",
-        date:"15 July 2026"
-    },
+  useEffect(() => {
+    const fetchNotes = async () => {
+      try {
+        const response = await api.get("/workspace");
+        const workspaces = response.data.workspaces || [];
 
-    {
-        id:2,
-        title:"Operating Systems",
-        preview:"Scheduling Algorithms and Deadlocks.",
-        date:"12 July 2026"
-    },
+        const notesWithContent = await Promise.all(
+          workspaces.map(async (workspace) => {
+            try {
+              const noteResponse = await api.get(`/notes/${workspace._id}`);
 
-    {
-        id:3,
-        title:"DBMS",
-        preview:"Normalization and SQL Queries.",
-        date:"10 July 2026"
-    }
+              const note = noteResponse.data;
 
-];
+              if (note.content.trim() !== "") {
+                return {
+                  workspaceId: workspace._id,
+                  title: note.title,
+                  preview: note.content.substring(0, 80),
+                  updatedAt: note.updatedAt,
+                };
+              }
 
-export function Notes(){
+              return null;
+            } catch (err) {
+              return null;
+            }
+          })
+        );
 
-    return(
+        setNotes(notesWithContent.filter(Boolean));
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-        <>
+    fetchNotes();
+  }, []);
 
-        <Header/>
+  return (
+    <>
+      <Header />
 
-        <section className="notes-page">
+      <section className="notes-page">
+        <h1>My Notes</h1>
 
-            <h1>My Notes</h1>
+        {loading ? (
+          <h2>Loading...</h2>
+        ) : notes.length === 0 ? (
+          <h2>You haven't created any notes yet.</h2>
+        ) : (
+          <div className="notes-list">
+            {notes.map((note) => (
+              <Link
+                key={note.workspaceId}
+                to={`/notes/${note.workspaceId}`}
+                className="note-card"
+              >
+                <div>
+                  <h2>{note.title}</h2>
 
-            <div className="notes-list">
+                  <p>{note.preview}...</p>
+                </div>
 
-                {
-
-                    notes.map(note=>(
-
-                        <Link
-                            to={`/notes/${note.id}`}
-                            className="note-card"
-                            key={note.id}
-                        >
-
-                            <div>
-
-                                <h2>{note.title}</h2>
-
-                                <p>{note.preview}</p>
-
-                            </div>
-
-                            <span>{note.date}</span>
-
-                        </Link>
-
-                    ))
-
-                }
-
-            </div>
-
-        </section>
-
-        </>
-
-    )
-
+                <span>
+                  {new Date(note.updatedAt).toLocaleDateString()}
+                </span>
+              </Link>
+            ))}
+          </div>
+        )}
+      </section>
+    </>
+  );
 }

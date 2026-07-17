@@ -188,3 +188,20 @@
 }
 
 }
+.logout-btn{
+    margin-top:20px;
+    padding:12px 24px;
+    border:none;
+    border-radius:10px;
+    background:#306D29;
+    color:#fff;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.logout-btn:hover{
+    background:#0D530E;
+    transform:translateY(-2px);
+}

@@ -1,0 +1,321 @@
+.workspace{
+
+    width:90%;
+    max-width:1300px;
+
+    margin:50px auto;
+}
+
+.workspace-header{
+
+    text-align:center;
+
+    margin-bottom:45px;
+}
+
+.workspace-header h1{
+
+    color:var(--heading-color);
+
+    margin-bottom:10px;
+}
+
+.workspace-header p{
+
+    color:#666;
+}
+
+.search-bar{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-bottom:50px;
+}
+
+.search-bar input{
+
+    flex:1;
+
+    padding:18px;
+
+    border-radius:15px;
+
+    border:1px solid var(--border-color);
+
+    outline:none;
+
+    font-size:16px;
+}
+
+.search-bar button{
+
+    padding:18px 28px;
+
+    border:none;
+
+    background:var(--primary-color);
+
+    color:white;
+
+    border-radius:15px;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.search-bar button:hover{
+
+    background:var(--primary-dark);
+}
+
+.section-title{
+
+    margin-bottom:25px;
+}
+
+.playlist-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+
+    gap:25px;
+}
+
+.playlist-card{
+
+    background:white;
+
+    padding:28px;
+
+    border-radius:20px;
+
+    box-shadow:var(--shadow);
+
+    transition:.3s;
+}
+
+.playlist-card:hover{
+
+    transform:translateY(-6px);
+}
+
+.playlist-card h3{
+
+    margin-bottom:10px;
+}
+
+.playlist-card p{
+
+    color:#666;
+}
+
+.progress{
+
+    width:100%;
+
+    height:8px;
+
+    background:#ddd;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin:20px 0;
+}
+
+.progress-fill{
+
+    width:58%;
+
+    height:100%;
+
+    background:var(--primary-color);
+}
+
+.last{
+
+    margin-bottom:25px;
+}
+
+.playlist-card button{
+
+    width:100%;
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:var(--primary-color);
+
+    color:white;
+
+    cursor:pointer;
+}
+
+@media(max-width:768px){
+
+.search-bar{
+
+    flex-direction:column;
+}
+
+.search-bar button{
+
+    width:100%;
+}
+
+}
+
+.board{
+    margin-top:40px;
+    padding:40px;
+    background:#e7d3a6;
+    border-radius:20px;
+    box-shadow:inset 0 0 20px rgba(0,0,0,.15);
+}
+
+.playlist-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+
+    gap:35px;
+
+}
+.playlist-card{
+
+    position:relative;
+
+    background:#fffdf5;
+
+    padding:18px;
+
+    border-radius:12px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+
+    transform:rotate(-2deg);
+
+    transition:.3s;
+
+}
+
+
+.playlist-card:nth-child(even){
+
+    transform:rotate(2deg);
+
+}
+
+.playlist-card:hover{
+
+    transform:translateY(-8px) rotate(0);
+
+}
+
+.pin{
+
+    width:18px;
+
+    height:18px;
+
+    border-radius:50%;
+
+    background:#d63031;
+
+    position:absolute;
+
+    top:-8px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    box-shadow:0 0 5px rgba(0,0,0,.4);
+
+}
+
+.progress{
+
+    width:100%;
+
+    height:8px;
+
+    background:#ddd;
+
+    border-radius:20px;
+
+    margin-top:12px;
+
+    overflow:hidden;
+
+}
+
+.progress-fill{
+
+    height:100%;
+
+    background:#2f7d32;
+
+}
+.playlist-card {
+    position: relative;
+}
+
+.playlist-card {
+    position: relative;
+}
+
+.delete-btn {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+
+    width: 38px;
+    height: 38px;
+
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #e53935;
+    color: #fff;
+
+    cursor: pointer;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    transition: all 0.2s ease;
+
+    z-index: 100;
+
+    /* Override any global button styles */
+    min-width: 38px;
+    max-width: 38px;
+    min-height: 38px;
+    max-height: 38px;
+    flex: none;
+}
+
+.delete-btn svg {
+    font-size: 16px;
+    pointer-events: none;
+}
+
+.delete-btn:hover {
+    background: #c62828;
+    transform: scale(1.1);
+}

@@ -1,6 +1,12 @@
 import './Style/Header.css'
-import { Link } from 'react-router-dom';
+
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { FaBars, FaTimes } from "react-icons/fa";
+import logo  from "../assets/LNTube.bg.svg"
 export function Header(){
+
+  const [menuOpen, setMenuOpen] = useState(false);
     return(
         <>
       <header className="header">
@@ -8,22 +14,25 @@ export function Header(){
       <Link to="/" className="logo">
 
         <span className="logo-icon">
-          <i className="fa-solid fa-graduation-cap"></i>
-        </span>
+  <img src={logo} alt="LNTube Logo" className="logo-img" />
+</span>
 
-        <h1>LearnTube</h1>
+        <h1>LNTube</h1>
 
       </Link>
 
-    <nav class="nav-links">
-         <Link to="/learn">Learn</Link>
+    <div className={`nav-links ${menuOpen ? "open" : ""}`}>
+         <Link to="/workspace">Learn</Link>
         <Link to="/notes">Notes</Link>
         <Link to="/profile">Profile</Link>
-    </nav>
-
-    <div class="menu-btn">
-        <i class="fa-solid fa-bars"></i>
     </div>
+
+    <div
+    className="menu-btn"
+    onClick={() => setMenuOpen(!menuOpen)}
+>
+    {menuOpen ? <FaTimes /> : <FaBars />}
+</div>
 
 </header>
         </>

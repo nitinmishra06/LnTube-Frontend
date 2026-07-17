@@ -1,108 +1,88 @@
-import './Style/notesPanel.css'
+import { useEffect, useRef, useState } from "react";
+import { useParams } from "react-router-dom";
+import api from "../api/axios";
+import "./Style/notesPanel.css";
 
-export function NotesPanel(){
+export function NotesPanel() {
+  const { workspaceId } = useParams();
 
-    return(
-        <div className="notes-panel">
+  const [title, setTitle] = useState("");
+  const [notes, setNotes] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [saveStatus, setSaveStatus] = useState("Saved");
 
-    <h2>Notes</h2>
+  const initialLoad = useRef(true);
 
-    <div className="notes-container">
+  useEffect(() => {
+    const fetchNotes = async () => {
+      try {
+        const response = await api.get(`/notes/${workspaceId}`);
 
-        <div className="note-message">
-            React uses components.
-        </div>
+        setTitle(response.data.title || "");
+        setNotes(response.data.content || "");
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-        <div className="note-message">
-            useState is used for state management.
-        </div>
+    fetchNotes();
+  }, [workspaceId]);
 
-    </div>
+  useEffect(() => {
+    if (loading) return;
 
-    <div className="notes-input">
+    if (initialLoad.current) {
+      initialLoad.current = false;
+      return;
+    }
 
-        <input
-            type="text"
-            placeholder="Write a note..."
-        />
+    const timer = setTimeout(async () => {
+      try {
+        setSaveStatus("Saving...");
 
-        <button className="icon-btn">
+        await api.put(`/notes/${workspaceId}`, {
+          title,
+          content: notes,
+        });
 
-            {/* Add */}
+        setSaveStatus("✓ Saved");
+      } catch (err) {
+        console.error(err);
+        setSaveStatus("Error saving");
+      }
+    }, 2000);
 
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="22"
-                height="22"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round">
+    return () => clearTimeout(timer);
+  }, [title, notes, workspaceId, loading]);
 
-                <line x1="12" y1="5" x2="12" y2="19"/>
-                <line x1="5" y1="12" x2="19" y2="12"/>
-
-            </svg>
-
-        </button>
-
-        <button className="icon-btn">
-
-            {/* Camera */}
-
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="22"
-                height="22"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round">
-
-                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
-
-                <circle cx="12" cy="13" r="4"/>
-
-            </svg>
-
-        </button>
-
-        <button className="icon-btn">
-
-            {/* PDF */}
-
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="22"
-                height="22"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round">
-
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-
-                <polyline points="14 2 14 8 20 8"/>
-
-                <text
-                    x="7"
-                    y="17"
-                    fontSize="5"
-                    fill="currentColor">
-
-                    PDF
-
-                </text>
-
-            </svg>
-
-        </button>
-
-    </div>
-
-</div>
+  if (loading) {
+    return (
+      <div className="notes-panel">
+        <h2>Loading Notes...</h2>
+      </div>
     );
+  }
+
+  return (
+    <div className="notes-panel">
+      <input
+        type="text"
+        className="note-title"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        placeholder="Untitled Note"
+      />
+
+      <p className="save-status">{saveStatus}</p>
+
+      <textarea
+        className="notes-textarea"
+        placeholder="Write your notes here..."
+        value={notes}
+        onChange={(e) => setNotes(e.target.value)}
+      />
+    </div>
+  );
 }

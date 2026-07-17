@@ -1,43 +1,84 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import api from "../api/axios";
 import { Header } from "./Header";
 import "./Style/Profile.css";
 
 export function Profile() {
 
+    const navigate = useNavigate();
+
     const [quote, setQuote] = useState("");
     const [author, setAuthor] = useState("");
 
+    const [user, setUser] = useState({
+        name: "",
+        email: "",
+    });
+
     useEffect(() => {
 
-        async function getQuote() {
-
-            try {
-
-                const response = await fetch("https://dummyjson.com/quotes/random");
-
-                const data = await response.json();
-
-                setQuote(data.quote);
-                setAuthor(data.author);
-
-            }
-
-            catch (err) {
-
-                console.log(err);
-
-            }
-
-        }
-
+        getProfile();
         getQuote();
 
     }, []);
 
+    async function getProfile() {
+
+        try {
+
+            const response = await api.get("/auth/profile");
+
+            setUser(response.data);
+
+        }
+
+        catch (err) {
+
+            console.log(err);
+
+            localStorage.removeItem("token");
+            localStorage.removeItem("user");
+
+            navigate("/login");
+
+        }
+
+    }
+
+    async function getQuote() {
+
+        try {
+
+            const response = await fetch("https://dummyjson.com/quotes/random");
+
+            const data = await response.json();
+
+            setQuote(data.quote);
+            setAuthor(data.author);
+
+        }
+
+        catch (err) {
+
+            console.log(err);
+
+        }
+
+    }
+
+    function logout() {
+
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+
+        navigate("/login");
+
+    }
+
     return (
 
         <>
-
             <Header />
 
             <section className="profile-page">
@@ -50,49 +91,42 @@ export function Profile() {
                         className="profile-img"
                     />
 
-                    <h2>Nitin Mishra</h2>
+                    <h2>{user.name}</h2>
 
-                    <p>ECE • IIIT Guwahati</p>
+                    <p>{user.email}</p>
+
+                    <button
+                        className="logout-btn"
+                        onClick={logout}
+                    >
+                        Logout
+                    </button>
 
                 </div>
-
 
                 <div className="stats-grid">
 
                     <div className="stat-card">
-
                         <h1>128.4</h1>
-
                         <span>Total Hours</span>
-
                     </div>
 
                     <div className="stat-card">
-
                         <h1>23 🔥</h1>
-
                         <span>Current Streak</span>
-
                     </div>
 
                     <div className="stat-card">
-
                         <h1>46</h1>
-
                         <span>Notes Created</span>
-
                     </div>
 
                     <div className="stat-card">
-
                         <h1>81</h1>
-
                         <span>Videos Completed</span>
-
                     </div>
 
                 </div>
-
 
                 <div className="quote-card">
 
